@@ -15,7 +15,7 @@ set(IMGUI_SRC ${IMGUI_DIR}/imgui.cpp
         ${IMGUI_DIR}/backends/imgui_impl_sdl2.cpp
         ${IMGUI_DIR}/backends/imgui_impl_sdlrenderer2.cpp)
 
-set(RAZOR_SRC src/main.cpp)
+set(RAZOR_SRC src/main.cpp src/task/task.cpp src/subject/subject.cpp)
 
 add_executable(Razor ${IMGUI_SRC} ${RAZOR_SRC})
 
