@@ -5,11 +5,18 @@
 #include <vector>
 
 class file_manager {
-  private:
-    std::vector<subject> subjects;
+private:
+  std::vector<subject> subjects;
 
-  public:
+public:
+  file_manager();
+  ~file_manager();
 
+  void load();
+  void save();
+
+  void add_subject(const subject& new_subject);
+  void remove_subject(const subject& subject);
 };
 
-#endif //SUBJECT_CONTROLLER_H
+#endif // SUBJECT_CONTROLLER_H

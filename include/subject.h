@@ -19,8 +19,8 @@ public:
   subject(int id, const std::string &name);
   subject(int id, std::string &&name);
 
-  void add_task(const task &task);
-  void remove_task(const task &task);
+  void add_task(const task &new_task);
+  void remove_task(const task &new_task);
 
   ~subject();
 };
