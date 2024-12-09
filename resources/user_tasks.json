@@ -1,0 +1,65 @@
+[
+    {
+        "id": 0,
+        "name": "katya byaks",
+        "readiness": 0.0,
+        "tasks": [
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            },
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            }
+        ]
+    },
+    {
+        "id": 1,
+        "name": "katya byaka",
+        "readiness": 0.0,
+        "tasks": [
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            },
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            }
+        ]
+    },
+    {
+        "id": 0,
+        "name": "bababa",
+        "readiness": 0.0,
+        "tasks": [
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            },
+            {
+                "deadline": "",
+                "description": "",
+                "id": 0,
+                "name": "",
+                "readiness": 0.0
+            }
+        ]
+    }
+]

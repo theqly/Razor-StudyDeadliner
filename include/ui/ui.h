@@ -1,17 +1,17 @@
 #ifndef UI_H
 #define UI_H
-
+#include <SDL.h>
+#include <subjects_controller.h>
 
 class ui {
 private:
+  subjects_controller& _subjects_controller;
 
 public:
-  ui();
+  explicit ui(subjects_controller& subjects_controller);
   ~ui();
 
-  void start();
-  void stop();
-
+  void draw() const;
 
 };
 

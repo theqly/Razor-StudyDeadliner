@@ -23,7 +23,35 @@ bool task::operator==(const task &other) const {
     return _id == other._id;
 }
 
-
-void task::update_readiness(const float readiness) {
-    _readiness = readiness;
+bool task::change_name(const std::string &name) {
+    if(name.empty()) return false;
+    _name = name;
+    return true;
 }
+
+bool task::change_description(const std::string &description) {
+    if(description.empty()) return false;
+    _description = description;
+    return true;
+}
+
+bool task::change_deadline(const std::string& deadline) {
+    _deadline = deadline;
+    return true;
+}
+
+
+bool task::change_readiness(const float readiness) {
+    if(readiness < 0.0f || readiness > 1.0f) return false;
+    _readiness = readiness;
+    return true;
+}
+
+int task::get_id() const { return _id; }
+std::string task::get_name() const { return _name; }
+std::string task::get_description() const { return _description; }
+std::string task::get_deadline() const { return _deadline; }
+float task::get_readiness() const { return _readiness; }
+
+
+
