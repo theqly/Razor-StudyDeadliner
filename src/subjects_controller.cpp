@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-subjects_controller::subjects_controller() : _fm("/home/theqly/programming/projects/nsu/ooad/"
-                         "Razor-StudyDeadliner/resources/user_tasks.json") {
+subjects_controller::subjects_controller() : _fm("../resources/user_tasks.json") {
   _subjects = _fm.load();
   _subjects_count = _subjects.size();
 }

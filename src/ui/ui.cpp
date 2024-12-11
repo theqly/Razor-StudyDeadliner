@@ -70,7 +70,7 @@ void ui::draw_main_menu() {
   ImGui::End();
 
   if (edit_subject_modal_open) {
-    auto &subject = _subjects_controller.get_subject_by_id(selected_subject_id);
+    subject &subject = _subjects_controller.get_subject_by_id(selected_subject_id);
     static char edit_subject_name[128] = "";
     static char edit_subject_description[128] = "";
     strncpy(edit_subject_name, subject.get_name().c_str(), sizeof(edit_subject_name));
@@ -84,6 +84,8 @@ void ui::draw_main_menu() {
         subject.change_name(edit_subject_name);
         subject.change_description(edit_subject_description);
         _subjects_controller.handle_update();
+        edit_subject_name[0] = '\0';
+        edit_subject_description[0] = '\0';
         edit_subject_modal_open = false;
         ImGui::CloseCurrentPopup();
       }
@@ -180,6 +182,10 @@ void ui::draw_subject_menu(const int subject_id) {
         task.change_deadline(edit_task_deadline);
         task.change_readiness(edit_task_progress / 100.0f);
         _subjects_controller.handle_update();
+        edit_task_name[0] = '\0';
+        edit_task_description[0] = '\0';
+        edit_task_deadline[0] = '\0';
+        edit_task_progress = 0;
         edit_task_modal_open = false;
         ImGui::CloseCurrentPopup();
       }
