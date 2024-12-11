@@ -13,7 +13,10 @@ public:
   bool add_subject(const std::string &name);
   bool remove_subject(int id);
 
+  void handle_update() const;
+
   std::vector<subject> get_subjects() const;
+  subject& get_subject_by_id(int id);
 
   file_manager get_file_manager() const;
 

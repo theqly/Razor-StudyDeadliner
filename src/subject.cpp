@@ -3,19 +3,19 @@
 #include <stdexcept>
 
 subject::subject(const int id)
-    : _id(id), _tasks_count(0), _name("unnamed"), _tasks(2) {}
+    : _id(id), _tasks_count(0), _name("unnamed"), _tasks(_tasks_count) {}
 
 subject::subject(const int id, const std::string &name)
-    : _id(id), _tasks_count(0), _name(name), _tasks(2) {}
+    : _id(id), _tasks_count(0), _name(name), _tasks(_tasks_count) {}
 
 subject::subject(const int id, std::string &&name)
-    : _id(id), _tasks_count(0), _name(name), _tasks(2) {}
+    : _id(id), _tasks_count(0), _name(name), _tasks(_tasks_count) {}
 
 subject::~subject() = default;
 
 bool subject::add_task(const task &new_task) {
   for( task &t : _tasks ) {
-    if( t.get_id() == new_task.get_id()) return false;
+    if( new_task.get_id() == t.get_id()) return false;
   }
   _tasks.push_back(new_task);
   ++_tasks_count;
@@ -48,17 +48,24 @@ bool subject::change_name(const std::string &name) {
   return true;
 }
 
-bool subject::change_readiness(const float readiness) {
-  if (readiness < 0.0f || readiness > 1.0f)
-    return false;
-  _readiness = readiness;
-  return true;
+float subject::get_readiness() const {
+  float readiness = 0.0f;
+
+  if(_tasks_count == 0) return readiness;
+
+  for(const task& t : _tasks) {
+    readiness += t.get_readiness();
+  }
+
+  return readiness / _tasks_count;
 }
 
-float subject::get_readiness() const { return _readiness; }
 std::vector<task> subject::get_tasks() const { return _tasks; }
+
 std::string subject::get_name() const { return _name; }
+
 int subject::get_id() const { return _id; }
+
 task& subject::get_task_by_id(const int id) {
   for (auto &t : _tasks) {
     if (t.get_id() == id) {

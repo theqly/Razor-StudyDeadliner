@@ -11,14 +11,13 @@ private:
   int _tasks_count;
   std::string _name;
   std::vector<task> _tasks;
-  float _readiness = 0.0f;
 
 public:
   explicit subject(int id);
   subject(int id, const std::string &name);
   subject(int id, std::string &&name);
 
-  bool add_task(const task &t);
+  bool add_task(const task &new_task);
   bool add_task(const std::string& name, const std::string& description, const std::string& deadline);
   bool remove_task(int id);
 

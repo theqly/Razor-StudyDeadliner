@@ -14,7 +14,7 @@ private:
   static subject json_to_subject(const nlohmann::json &subjJson);
   static task json_to_task(const nlohmann::json &taskJson);
 public:
-  file_manager(const std::string &file_path);
+  explicit file_manager(const std::string &file_path);
   bool save(const std::vector<subject> &subjects) const;
   std::vector<subject> load() const;
 

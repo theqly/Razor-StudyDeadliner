@@ -70,7 +70,6 @@ nlohmann::json file_manager::task_to_json(const task &t) {
 
 subject file_manager::json_to_subject(const nlohmann::json &subjJson) {
   subject subj(subjJson.at("id").get<int>(), subjJson.at("name").get<std::string>());
-  subj.change_readiness(subjJson.at("readiness").get<float>());
 
   for (const auto &taskJson : subjJson.at("tasks")) {
     subj.add_task(json_to_task(taskJson));

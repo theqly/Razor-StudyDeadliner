@@ -11,6 +11,9 @@
 #error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
 #endif
 
+#define SCREEN_WIDTH 1000
+#define SCREEN_HEIGHT 600
+
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         return -1;
@@ -20,8 +23,8 @@ int main(int argc, char* argv[]) {
         "Razor",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        1280,
-        960,
+        SCREEN_WIDTH,
+        SCREEN_HEIGHT,
         SDL_WINDOW_SHOWN
     );
 
@@ -39,9 +42,6 @@ int main(int argc, char* argv[]) {
     subjects_controller subjects_contr{};
     ui_controller ui_contr(subjects_contr);
     ui ui(subjects_contr);
-
-    bool running = true;
-    SDL_Event event;
 
     while (ui_contr.is_running()) {
         ui_contr.handle_input();
