@@ -14,7 +14,6 @@ subjects_controller::~subjects_controller() {
 bool subjects_controller::add_subject(const std::string &name) {
   _subjects.push_back(subject(_subjects_count, name));
   ++_subjects_count;
-  handle_update();
   return true;
 }
 
@@ -22,7 +21,6 @@ bool subjects_controller::remove_subject(const int id) {
   for (auto it = _subjects.begin(); it != _subjects.end(); ++it) {
     if (it->get_id() == id) {
       _subjects.erase(it);
-      handle_update();
       return true;
     }
   }

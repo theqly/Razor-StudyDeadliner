@@ -13,23 +13,41 @@ subject::subject(const int id, std::string &&name)
 
 subject::~subject() = default;
 
-bool subject::add_task(const task &new_task) {
-  for( task &t : _tasks ) {
-    if( new_task.get_id() == t.get_id()) return false;
-  }
+bool subject::add_task(const std::string& name) {
+  const task new_task(_tasks_count, name);
   _tasks.push_back(new_task);
   ++_tasks_count;
   return true;
 }
 
-
-bool subject::add_task(const std::string& name, const std::string& description, const std::string& deadline) {
-  task new_task(_tasks_count, name, description);
-  new_task.change_deadline(deadline);
+bool subject::add_task(const std::string &name,
+                       const std::string &description) {
+  task new_task(_tasks_count, name);
+  new_task.change_description(description);
   _tasks.push_back(new_task);
-
+  ++_tasks_count;
   return true;
 }
+
+bool subject::add_task(const std::string &name, const std::string &description,
+                       const std::string &deadline) {
+  task new_task(_tasks_count, name);
+  new_task.change_description(description);
+  new_task.change_deadline(deadline);
+  _tasks.push_back(new_task);
+  ++_tasks_count;
+  return true;
+}
+
+bool subject::add_task(const int id, const std::string &name, const std::string &description,
+                       const std::string &deadline) {
+  task new_task(id, name);
+  new_task.change_description(description);
+  new_task.change_deadline(deadline);
+  _tasks.push_back(new_task);
+  return true;
+}
+
 
 bool subject::remove_task(const int id) {
   for (auto it = _tasks.begin(); it != _tasks.end(); ++it) {
@@ -48,6 +66,14 @@ bool subject::change_name(const std::string &name) {
   return true;
 }
 
+bool subject::change_description(const std::string &description) {
+  if (description.empty())
+    return false;
+  _name = description;
+  return true;
+}
+
+
 float subject::get_readiness() const {
   float readiness = 0.0f;
 
@@ -63,6 +89,9 @@ float subject::get_readiness() const {
 std::vector<task> subject::get_tasks() const { return _tasks; }
 
 std::string subject::get_name() const { return _name; }
+
+std::string subject::get_description() const { return _description; }
+
 
 int subject::get_id() const { return _id; }
 

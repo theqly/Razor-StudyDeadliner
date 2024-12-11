@@ -18,8 +18,6 @@ public:
   explicit task(int id);
   task(int id, const std::string &name);
   task(int id, std::string &&name);
-  task(int id, const std::string &name, const std::string &description);
-  task(int id, std::string &&name, std::string &&description);
 
   task& operator=(const task &t);
   bool operator==(const task &other) const;

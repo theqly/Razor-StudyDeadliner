@@ -72,7 +72,8 @@ subject file_manager::json_to_subject(const nlohmann::json &subjJson) {
   subject subj(subjJson.at("id").get<int>(), subjJson.at("name").get<std::string>());
 
   for (const auto &taskJson : subjJson.at("tasks")) {
-    subj.add_task(json_to_task(taskJson));
+    task t = json_to_task(taskJson);
+    subj.add_task(t.get_id(), t.get_name(), t.get_description(), t.get_deadline());
   }
 
   return subj;
