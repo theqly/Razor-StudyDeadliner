@@ -29,7 +29,7 @@ public:
   bool change_description(const std::string &description);
 
   [[nodiscard]] float get_readiness() const;
-  [[nodiscard]] std::vector<task> get_tasks() const;
+  [[nodiscard]] std::vector<task>& get_tasks() ;
   [[nodiscard]] std::string get_name() const;
   [[nodiscard]] std::string get_description() const;
   [[nodiscard]] int get_id() const;

@@ -4,8 +4,8 @@
 
 using json = nlohmann::json;
 
- file_manager::file_manager(const std::string &file_path) : _file_path(file_path){ }
-
+file_manager::file_manager(const std::string &file_path)
+    : _file_path(file_path) {}
 
 std::vector<subject> file_manager::load() const {
   std::vector<subject> subjects;
@@ -26,9 +26,9 @@ std::vector<subject> file_manager::load() const {
   return subjects;
 }
 
-bool file_manager::save(const std::vector<subject> &subjects) const {
+bool file_manager::save(std::vector<subject> &subjects) const {
   json jsonData;
-  for (const auto &subj : subjects) {
+  for (subject &subj : subjects) {
     jsonData.push_back(subject_to_json(subj));
   }
 
@@ -43,14 +43,15 @@ bool file_manager::save(const std::vector<subject> &subjects) const {
   return true;
 }
 
-nlohmann::json file_manager::subject_to_json(const subject &subj) {
+nlohmann::json file_manager::subject_to_json(subject &subj) {
   json subjJson;
   subjJson["id"] = subj.get_id();
   subjJson["name"] = subj.get_name();
+  subjJson["description"] = subj.get_description();
   subjJson["readiness"] = subj.get_readiness();
 
   std::vector<json> tasksJson;
-  for (const auto &t : subj.get_tasks()) {
+  for (const auto& t : subj.get_tasks()) {
     tasksJson.push_back(task_to_json(t));
   }
 
@@ -69,11 +70,15 @@ nlohmann::json file_manager::task_to_json(const task &t) {
 }
 
 subject file_manager::json_to_subject(const nlohmann::json &subjJson) {
-  subject subj(subjJson.at("id").get<int>(), subjJson.at("name").get<std::string>());
+  subject subj(subjJson.at("id").get<int>(),
+               subjJson.at("name").get<std::string>());
+
+  subj.change_description(subjJson.at("description").get<std::string>());
 
   for (const auto &taskJson : subjJson.at("tasks")) {
     task t = json_to_task(taskJson);
-    subj.add_task(t.get_id(), t.get_name(), t.get_description(), t.get_deadline());
+    subj.add_task(t.get_id(), t.get_name(), t.get_description(),
+                  t.get_deadline());
   }
 
   return subj;
@@ -86,9 +91,3 @@ task file_manager::json_to_task(const nlohmann::json &taskJson) {
   t.change_readiness(taskJson.at("readiness").get<float>());
   return t;
 }
-
-
-
-
-
-

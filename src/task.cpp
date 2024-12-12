@@ -35,7 +35,7 @@ bool task::change_deadline(const std::string& deadline) {
 
 
 bool task::change_readiness(const float readiness) {
-    if(readiness < 0.0f || readiness > 1.0f) return false;
+    //if(readiness < 0.0f || readiness > 1.0f) return false;
     _readiness = readiness;
     return true;
 }

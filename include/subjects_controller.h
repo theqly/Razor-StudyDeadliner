@@ -10,15 +10,16 @@ private:
 
 public:
   subjects_controller();
-  bool add_subject(const std::string &name);
+  bool add_subject(const std::string &name, const std::string &description);
   bool remove_subject(int id);
 
-  void handle_update() const;
+  void handle_update();
 
-  std::vector<subject> get_subjects() const;
+  [[nodiscard]] std::vector<subject>& get_subjects();
   subject& get_subject_by_id(int id);
+  float get_total_readiness();
 
-  file_manager get_file_manager() const;
+  [[nodiscard]] file_manager get_file_manager() const;
 
   ~subjects_controller();
 };

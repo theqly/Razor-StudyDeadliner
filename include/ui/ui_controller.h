@@ -1,7 +1,7 @@
 #ifndef UI_CONTROLLER_H
 #define UI_CONTROLLER_H
 #include <subjects_controller.h>
-#include <ui/ui.h>
+#include <SDL.h>
 
 class ui_controller {
 private:

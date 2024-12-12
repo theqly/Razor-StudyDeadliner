@@ -45,6 +45,7 @@ bool subject::add_task(const int id, const std::string &name, const std::string 
   new_task.change_description(description);
   new_task.change_deadline(deadline);
   _tasks.push_back(new_task);
+  ++_tasks_count;
   return true;
 }
 
@@ -53,6 +54,7 @@ bool subject::remove_task(const int id) {
   for (auto it = _tasks.begin(); it != _tasks.end(); ++it) {
     if(it->get_id() == id) {
       _tasks.erase(it);
+      --_tasks_count;
       return true;
     }
   }
@@ -69,7 +71,7 @@ bool subject::change_name(const std::string &name) {
 bool subject::change_description(const std::string &description) {
   if (description.empty())
     return false;
-  _name = description;
+  _description = description;
   return true;
 }
 
@@ -77,16 +79,16 @@ bool subject::change_description(const std::string &description) {
 float subject::get_readiness() const {
   float readiness = 0.0f;
 
-  if(_tasks_count == 0) return readiness;
+  if(_tasks_count == 0) return 1.0f;
 
   for(const task& t : _tasks) {
     readiness += t.get_readiness();
   }
 
-  return readiness / _tasks_count;
+  return readiness / static_cast<float>(_tasks_count);
 }
 
-std::vector<task> subject::get_tasks() const { return _tasks; }
+std::vector<task>& subject::get_tasks() { return _tasks; }
 
 std::string subject::get_name() const { return _name; }
 

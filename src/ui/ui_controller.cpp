@@ -21,7 +21,7 @@ void ui_controller::handle_input() {
         _running = false;
         break;
       case SDLK_n:
-        _subjects_controller.add_subject("New Subject");
+        _subjects_controller.add_subject("New Subject", "Random description");
         break;
       default:
         break;

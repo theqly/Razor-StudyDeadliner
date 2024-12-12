@@ -9,13 +9,13 @@ private:
 
   const std::string _file_path;
 
-  static nlohmann::json subject_to_json(const subject &subj);
+  static nlohmann::json subject_to_json(subject &subj);
   static nlohmann::json task_to_json(const task &t);
   static subject json_to_subject(const nlohmann::json &subjJson);
   static task json_to_task(const nlohmann::json &taskJson);
 public:
   explicit file_manager(const std::string &file_path);
-  bool save(const std::vector<subject> &subjects) const;
+  bool save(std::vector<subject> &subjects) const;
   std::vector<subject> load() const;
 
 };
