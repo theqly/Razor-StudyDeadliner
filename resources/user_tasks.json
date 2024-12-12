@@ -3,7 +3,6 @@
         "description": "so sad",
         "id": 0,
         "name": "math",
-        "readiness": 0.5,
         "tasks": [
             {
                 "deadline": "tomorrow",
@@ -17,7 +16,7 @@
                 "description": "for Katya",
                 "id": 1,
                 "name": "be zadrot",
-                "readiness": 0.0
+                "readiness": 1.0
             }
         ]
     },
@@ -25,7 +24,6 @@
         "description": "sososo sad",
         "id": 1,
         "name": "Physics",
-        "readiness": 1.0,
         "tasks": []
     }
 ]

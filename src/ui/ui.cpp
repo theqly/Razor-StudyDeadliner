@@ -1,6 +1,7 @@
 #include "ui/ui.h"
 #include <imgui.h>
 #include <imgui_internal.h>
+#include <iostream>
 
 #define MAX_SUBJECT_NAME_LEN 128
 #define MAX_SUBJECT_DESCRIPTION_LEN 256
@@ -9,9 +10,9 @@
 
 ui::ui(subjects_controller &subjects_controller)
     : _subjects_controller(subjects_controller), _cur_state(SUBJECTS_MENU) {
-  smallFont = io.Fonts->AddFontFromFileTTF("../resources/fonts/Roboto-Regular.ttf", 18.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
-  mediumFont = io.Fonts->AddFontFromFileTTF("../resources/fonts/Roboto-Regular.ttf", 22.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
-  largeFont = io.Fonts->AddFontFromFileTTF("../resources/fonts/Roboto-Regular.ttf", 26.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  smallFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 18.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  mediumFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 22.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  largeFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 26.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
 
   io.FontDefault = smallFont;
 }
@@ -201,8 +202,8 @@ void ui::draw_add_subject_popup() {
   ImGui::InputText("Description", s_description, MAX_SUBJECT_DESCRIPTION_LEN);
 
   if (ImGui::Button("Add")) {
-    if (strlen(s_name) <= 0 || strlen(s_description) <= 0)
-      return; //TODO
+    if (strlen(s_name) <= 0) strcpy(s_name, "unnamed");
+    if (strlen(s_description) <= 0) strcpy(s_description, "no description");
 
     _subjects_controller.add_subject(s_name, s_description);
     _subjects_controller.handle_update();
@@ -239,8 +240,8 @@ void ui::draw_edit_subject_popup(subject &s) {
   ImGui::InputText("Description", s_description, MAX_SUBJECT_DESCRIPTION_LEN);
 
   if (ImGui::Button("Save")) {
-    if (strlen(s_name) <= 0 || strlen(s_description) <= 0)
-      return; //TODO
+    if (strlen(s_name) <= 0) strcpy(s_name, "unnamed");
+    if (strlen(s_description) <= 0) strcpy(s_description, "no description");
 
     s.change_name(s_name);
     s.change_description(s_description);
@@ -278,8 +279,9 @@ void ui::draw_add_task_popup() {
   ImGui::InputText("Deadline", t_deadline, MAX_SUBJECT_DESCRIPTION_LEN);
 
   if (ImGui::Button("Add")) {
-    if (strlen(t_name) <= 0 || strlen(t_description) <= 0 || strlen(t_deadline) <= 0)
-      return; //TODO
+    if (strlen(t_name) <= 0) strcpy(t_name, "unnamed");
+    if (strlen(t_description) <= 0) strcpy(t_description, "no description");
+    if (strlen(t_deadline) <= 0) strcpy(t_deadline, "no deadline");
 
     _subjects_controller.get_subject_by_id(_cur_subject).add_task(t_name, t_description, t_deadline);
     _subjects_controller.handle_update();
@@ -320,8 +322,9 @@ void ui::draw_edit_task_popup(task &t) {
   ImGui::InputText("Deadline", t_deadline, MAX_SUBJECT_DESCRIPTION_LEN);
 
   if (ImGui::Button("Save")) {
-    if (strlen(t_name) <= 0 || strlen(t_description) <= 0 || strlen(t_deadline) <= 0)
-      return; //TODO
+    if (strlen(t_name) <= 0) strcpy(t_name, "unnamed");
+    if (strlen(t_description) <= 0) strcpy(t_description, "no description");
+    if (strlen(t_deadline) <= 0) strcpy(t_deadline, "no deadline");
 
     t.change_name(t_name);
     t.change_description(t_description);

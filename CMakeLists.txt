@@ -26,6 +26,9 @@ set(IMGUI_SRC ${IMGUI_DIR}/imgui.cpp
 
 set(RAZOR_SRC src/main.cpp src/task.cpp src/subject.cpp src/file_manager.cpp src/ui/ui.cpp src/ui/ui_controller.cpp src/subjects_controller.cpp)
 
+set(PROJECT_ROOT "${CMAKE_SOURCE_DIR}")
+add_compile_definitions(RESOURCES_PATH="${PROJECT_ROOT}/resources")
+
 add_executable(Razor ${IMGUI_SRC} ${RAZOR_SRC})
 
 target_include_directories(Razor PUBLIC ${SDL2_INCLUDE_DIRS})

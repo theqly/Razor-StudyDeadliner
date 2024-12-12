@@ -48,7 +48,6 @@ nlohmann::json file_manager::subject_to_json(subject &subj) {
   subjJson["id"] = subj.get_id();
   subjJson["name"] = subj.get_name();
   subjJson["description"] = subj.get_description();
-  subjJson["readiness"] = subj.get_readiness();
 
   std::vector<json> tasksJson;
   for (const auto& t : subj.get_tasks()) {
@@ -79,6 +78,7 @@ subject file_manager::json_to_subject(const nlohmann::json &subjJson) {
     task t = json_to_task(taskJson);
     subj.add_task(t.get_id(), t.get_name(), t.get_description(),
                   t.get_deadline());
+    subj.get_task_by_id(t.get_id()).change_readiness(t.get_readiness());
   }
 
   return subj;
