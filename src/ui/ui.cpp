@@ -309,12 +309,12 @@ void ui::draw_edit_task_popup(task &t) {
   static char t_name[MAX_SUBJECT_NAME_LEN];
   static char t_description[MAX_SUBJECT_DESCRIPTION_LEN];
   static char t_deadline[MAX_SUBJECT_DESCRIPTION_LEN];
-  static float t_progress = 0.0f;
+  static float t_progress = -1.0f;
 
   if(t_name[0] == '\0') strcpy(t_name, t.get_name().c_str());
   if(t_description[0] == '\0') strcpy(t_description, t.get_description().c_str());
   if(t_deadline[0] == '\0') strcpy(t_deadline, t.get_deadline().c_str());
-  if (t_progress == 0.0f) t_progress = t.get_readiness() * 100.0f;
+  if (t_progress == -1.0f) t_progress = t.get_readiness() * 100.0f;
 
   if (!ImGui::BeginPopupModal("Edit Task", nullptr,
                               ImGuiWindowFlags_AlwaysAutoResize)) return;
@@ -338,7 +338,7 @@ void ui::draw_edit_task_popup(task &t) {
     t_name[0] = '\0';
     t_description[0] = '\0';
     t_deadline[0] = '\0';
-    t_progress = 0.0f;
+    t_progress = -1.0f;
 
     ImGui::CloseCurrentPopup();
     ImGui::EndPopup();
