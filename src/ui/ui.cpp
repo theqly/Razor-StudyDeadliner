@@ -10,9 +10,9 @@
 
 ui::ui(subjects_controller &subjects_controller)
     : _subjects_controller(subjects_controller), _cur_state(SUBJECTS_MENU) {
-  smallFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 18.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
-  mediumFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 22.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
-  largeFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 26.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  smallFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 26.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  mediumFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 32.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
+  largeFont = io.Fonts->AddFontFromFileTTF((std::string(RESOURCES_PATH) + "/fonts/Roboto-Regular.ttf").c_str(), 38.0f, nullptr, io.Fonts->GetGlyphRangesCyrillic());
 
   io.FontDefault = smallFont;
 }
@@ -144,6 +144,7 @@ void ui::draw_tasks_menu() {
       need_to_draw_delete_task_confirmation = true;
     }
 
+    ImGui::Separator();
     ImGui::EndGroup();
   }
 

@@ -7,14 +7,28 @@
     },
     {
         "description": "no description",
-        "id": 2,
-        "name": "математика",
+        "id": 3,
+        "name": "косплеинг",
         "tasks": [
             {
-                "deadline": "no deadline",
-                "description": "no description",
+                "deadline": "сегодня",
+                "description": "для кати",
                 "id": 0,
-                "name": "посчитать 2+2",
+                "name": "сделать косплей на ****",
+                "readiness": 0.0
+            },
+            {
+                "deadline": "сегодня",
+                "description": "для кати",
+                "id": 1,
+                "name": "не абьюзить кофту",
+                "readiness": 0.0
+            },
+            {
+                "deadline": "сегодня",
+                "description": "для кати",
+                "id": 2,
+                "name": "перестать перебить рубашку",
                 "readiness": 0.0
             }
         ]

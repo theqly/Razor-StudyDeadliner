@@ -11,8 +11,9 @@
 #error This backend requires SDL 2.0.17+ because of SDL_RenderGeometry() function
 #endif
 
-#define SCREEN_WIDTH 1000
-#define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+#define FPS_LIMIT 90
 
 int main(int argc, char* argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
@@ -43,7 +44,11 @@ int main(int argc, char* argv[]) {
     ui_controller ui_contr(subjects_contr);
     ui ui(subjects_contr);
 
+    const int frame_delay = 1000 / FPS_LIMIT;
+
     while (ui_contr.is_running()) {
+        Uint32 frame_start = SDL_GetTicks();
+
         ui_contr.handle_input();
 
         ImGui_ImplSDLRenderer2_NewFrame();
@@ -57,6 +62,12 @@ int main(int argc, char* argv[]) {
         SDL_RenderClear(renderer);
         ImGui_ImplSDLRenderer2_RenderDrawData(ImGui::GetDrawData(), renderer);
         SDL_RenderPresent(renderer);
+
+        Uint32 frame_time = SDL_GetTicks() - frame_start;
+
+        if (frame_time < frame_delay) {
+            SDL_Delay(frame_delay - frame_time);
+        }
     }
 
     ImGui_ImplSDLRenderer2_Shutdown();
