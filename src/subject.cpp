@@ -14,33 +14,37 @@ subject::subject(const int id, std::string &&name)
 subject::~subject() = default;
 
 bool subject::add_task(const std::string& name) {
-  const task new_task(_tasks_count, name);
+  const task new_task(_next_id, name);
   _tasks.push_back(new_task);
   ++_tasks_count;
+  ++_next_id;
   return true;
 }
 
 bool subject::add_task(const std::string &name,
                        const std::string &description) {
-  task new_task(_tasks_count, name);
+  task new_task(_next_id, name);
   new_task.change_description(description);
   _tasks.push_back(new_task);
   ++_tasks_count;
+  ++_next_id;
   return true;
 }
 
 bool subject::add_task(const std::string &name, const std::string &description,
                        const std::string &deadline) {
-  task new_task(_tasks_count, name);
+  task new_task(_next_id, name);
   new_task.change_description(description);
   new_task.change_deadline(deadline);
   _tasks.push_back(new_task);
+  ++_next_id;
   ++_tasks_count;
   return true;
 }
 
 bool subject::add_task(const int id, const std::string &name, const std::string &description,
                        const std::string &deadline) {
+  if(id >= _next_id) _next_id = id + 1;
   task new_task(id, name);
   new_task.change_description(description);
   new_task.change_deadline(deadline);
