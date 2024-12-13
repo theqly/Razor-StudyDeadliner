@@ -309,10 +309,12 @@ void ui::draw_edit_task_popup(task &t) {
   static char t_name[MAX_SUBJECT_NAME_LEN];
   static char t_description[MAX_SUBJECT_DESCRIPTION_LEN];
   static char t_deadline[MAX_SUBJECT_DESCRIPTION_LEN];
+  static float t_progress = 0.0f;
 
   if(t_name[0] == '\0') strcpy(t_name, t.get_name().c_str());
   if(t_description[0] == '\0') strcpy(t_description, t.get_description().c_str());
   if(t_deadline[0] == '\0') strcpy(t_deadline, t.get_deadline().c_str());
+  if (t_progress == 0.0f) t_progress = t.get_readiness() * 100.0f;
 
   if (!ImGui::BeginPopupModal("Edit Task", nullptr,
                               ImGuiWindowFlags_AlwaysAutoResize)) return;
@@ -320,6 +322,7 @@ void ui::draw_edit_task_popup(task &t) {
   ImGui::InputText("Name", t_name, MAX_SUBJECT_NAME_LEN);
   ImGui::InputText("Description", t_description, MAX_SUBJECT_DESCRIPTION_LEN);
   ImGui::InputText("Deadline", t_deadline, MAX_SUBJECT_DESCRIPTION_LEN);
+  ImGui::SliderFloat("Progress", &t_progress, 0.0f, 100.0f, "%.0f%%");
 
   if (ImGui::Button("Save")) {
     if (strlen(t_name) <= 0) strcpy(t_name, "unnamed");
@@ -329,11 +332,14 @@ void ui::draw_edit_task_popup(task &t) {
     t.change_name(t_name);
     t.change_description(t_description);
     t.change_deadline(t_deadline);
+    t.change_readiness(t_progress / 100.0f);
 
     _subjects_controller.handle_update();
     t_name[0] = '\0';
     t_description[0] = '\0';
     t_deadline[0] = '\0';
+    t_progress = 0.0f;
+
     ImGui::CloseCurrentPopup();
     ImGui::EndPopup();
     need_to_draw_edit_task_popup = false;

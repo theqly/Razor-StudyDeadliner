@@ -3,13 +3,13 @@
 #include <stdexcept>
 
 subject::subject(const int id)
-    : _id(id), _tasks_count(0), _name("unnamed"), _tasks(_tasks_count) {}
+    : _id(id), _tasks_count(0), _next_id(0),_name("unnamed"), _tasks(_tasks_count) {}
 
 subject::subject(const int id, const std::string &name)
-    : _id(id), _tasks_count(0), _name(name), _tasks(_tasks_count) {}
+    : _id(id), _tasks_count(0), _next_id(0), _name(name), _tasks(_tasks_count) {}
 
 subject::subject(const int id, std::string &&name)
-    : _id(id), _tasks_count(0), _name(name), _tasks(_tasks_count) {}
+    : _id(id), _tasks_count(0), _next_id(0), _name(name), _tasks(_tasks_count) {}
 
 subject::~subject() = default;
 

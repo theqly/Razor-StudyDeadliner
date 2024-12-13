@@ -9,6 +9,7 @@ class subject {
 private:
   int _id;
   int _tasks_count;
+  int _next_id;
   std::string _name;
   std::string _description;
   std::vector<task> _tasks;

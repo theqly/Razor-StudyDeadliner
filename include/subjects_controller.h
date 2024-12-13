@@ -5,6 +5,7 @@
 class subjects_controller {
 private:
   int _subjects_count;
+  int _next_id;
   file_manager _fm;
   std::vector<subject> _subjects;
 

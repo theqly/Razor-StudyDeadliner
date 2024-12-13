@@ -1,29 +1,22 @@
 [
     {
-        "description": "so sad",
-        "id": 0,
-        "name": "math",
-        "tasks": [
-            {
-                "deadline": "tomorrow",
-                "description": "in mind",
-                "id": 0,
-                "name": "integrate",
-                "readiness": 1.0
-            },
-            {
-                "deadline": "never",
-                "description": "for Katya",
-                "id": 1,
-                "name": "be zadrot",
-                "readiness": 1.0
-            }
-        ]
-    },
-    {
         "description": "sososo sad",
         "id": 1,
         "name": "Physics",
         "tasks": []
+    },
+    {
+        "description": "no description",
+        "id": 2,
+        "name": "математика",
+        "tasks": [
+            {
+                "deadline": "no deadline",
+                "description": "no description",
+                "id": 0,
+                "name": "посчитать 2+2",
+                "readiness": 0.6299999952316284
+            }
+        ]
     }
 ]

@@ -2,19 +2,23 @@
 
 #include <iostream>
 
-subjects_controller::subjects_controller() : _fm(std::string(RESOURCES_PATH) + "/user_tasks.json") {
+subjects_controller::subjects_controller() : _next_id(0), _fm(std::string(RESOURCES_PATH) + "/user_tasks.json") {
   _subjects = _fm.load();
   _subjects_count = _subjects.size();
+  for (subject& s : _subjects) {
+    if(s.get_id() >= _next_id) _next_id = s.get_id() + 1;
+  }
 }
 
 subjects_controller::~subjects_controller() = default;
 
 bool subjects_controller::add_subject(const std::string &name, const std::string &description) {
 
-  subject new_subject(_subjects_count, name);
+  subject new_subject(_next_id, name);
   new_subject.change_description(description);
   _subjects.push_back(new_subject);
   ++_subjects_count;
+  ++_next_id;
   return true;
 }
 
