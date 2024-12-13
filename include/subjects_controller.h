@@ -20,8 +20,6 @@ public:
   subject& get_subject_by_id(int id);
   float get_total_readiness();
 
-  [[nodiscard]] file_manager get_file_manager() const;
-
   ~subjects_controller();
 };
 

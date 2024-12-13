@@ -65,8 +65,4 @@ float subjects_controller::get_total_readiness() {
 
 
 
-file_manager subjects_controller::get_file_manager() const { return _fm; }
-
-
-
 

@@ -19,8 +19,6 @@ public:
   subject(int id, const std::string &name);
   subject(int id, std::string &&name);
 
-  bool add_task(const std::string &name);
-  bool add_task(const std::string &name, const std::string &description);
   bool add_task(const std::string &name, const std::string &description, const std::string &deadline);
   bool add_task(int id, const std::string &name, const std::string &description, const std::string &deadline);
 
@@ -30,7 +28,7 @@ public:
   bool change_description(const std::string &description);
 
   [[nodiscard]] float get_readiness() const;
-  [[nodiscard]] std::vector<task>& get_tasks() ;
+  [[nodiscard]] std::vector<task>& get_tasks();
   [[nodiscard]] std::string get_name() const;
   [[nodiscard]] std::string get_description() const;
   [[nodiscard]] int get_id() const;

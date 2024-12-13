@@ -6,7 +6,7 @@
 class task {
 private:
 
-  int _id{};
+  int _id;
 
   std::string _name;
   std::string _description;

@@ -6,7 +6,7 @@
 class ui_controller {
 private:
   subjects_controller _subjects_controller;
-  bool _running;
+  bool _is_running;
 
 public:
   explicit ui_controller(const subjects_controller & subjects_controller);
